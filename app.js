@@ -7,6 +7,9 @@ const path = require('path');
 require('dotenv').config();
 
 //Base de datos
+const { conexion } = require('./database.js');
+
+conexion()
 
 const app = express()
 const port = process.env.PORT || 5000
