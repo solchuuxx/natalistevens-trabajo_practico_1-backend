@@ -1,13 +1,13 @@
 const { sequelize, DataTypes } = require('../../database.js')
 
-const usuario = sequelize.define( 'usuario', {
+const Usuario = sequelize.define( 'Usuario', {
 
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    usuario:{
+    user:{
         type: DataTypes.STRING(30),
         unique: true,
         allowNull: false
@@ -19,6 +19,10 @@ const usuario = sequelize.define( 'usuario', {
     correo: {
         type: DataTypes.STRING(50),
         allowNull: false
+    },
+    estado: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
     },
     createdAt: {
         type: DataTypes.DATE,
@@ -38,15 +42,15 @@ const usuario = sequelize.define( 'usuario', {
     createdAt: true,
     updatedAt: true,
     deletedAt: true,
-    tableName: 'usuario'
+    tableName: 'Usuario'
 });
 
 try {
-    usuario.sync({ force: false }).then(() => {
+    Usuario.sync({ force: false }).then(() => {
         console.log('Se creó la tabla de usuarios');
     });
 } catch (error) {
     console.log('Ocurrió un error al crear la tabla de usuarios', error)
 }
 
-module.exports = usuario;
+module.exports = Usuario;

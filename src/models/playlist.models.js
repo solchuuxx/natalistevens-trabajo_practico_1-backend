@@ -1,5 +1,5 @@
 const { sequelize, DataTypes } = require('../../database.js')
-const { usuario } = require('./usuario.models.js')
+const { Usuario } = require('./usuario.models.js')
 const { musica } = require('./musica.models.js')
 
 const playlist = sequelize.define('playlist', {
@@ -15,6 +15,10 @@ const playlist = sequelize.define('playlist', {
     titulo: {
         type: DataTypes.STRING(100),
         allowNull: false
+    },
+    estado: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
     },
     createdAt: {
         type: DataTypes.DATE,

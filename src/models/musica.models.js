@@ -18,6 +18,10 @@ const musica = sequelize.define('musica', {
         type: DataTypes.STRING(30),
         allowNull: false
     },
+    estado: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+    },
     createdAt: {
         type: DataTypes.DATE,
         allowNull: false,

@@ -14,20 +14,20 @@ const {
 // ==========================================
 
 // Obtener todas las playlists
-router.get('/api',obtenerPlaylistsCtrl);
+router.get('/api/playlist',obtenerPlaylistsCtrl);
 
 // Obtener una playlist
-router.get('/api/:id', obtenerUnaPlaylistCtrl);
+router.get('/api/playlist/:id', obtenerUnaPlaylistCtrl);
 
 // Crear una playlist
-router.post('/api', crearPlaylistCtrl);
+router.post('/api/playlist/:id', crearPlaylistCtrl);
 
 
-// Actualizar una playlist
-router.put('/api/:id', actualizarPlaylistCtrl);
+// Actualizar una playlist por id
+router.put('/api/playlist/:id', actualizarPlaylistCtrl);
 
 // Eliminar una playlist por id
-router.delete('/api/:id', eliminarPlaylistCtrl);
+router.delete('/api/playlist/:id', eliminarPlaylistCtrl);
 
 
 module.exports = router;

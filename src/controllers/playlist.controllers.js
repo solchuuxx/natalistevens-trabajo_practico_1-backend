@@ -1,13 +1,9 @@
-const playlist = require('../models/playlist.models.js').default;
+const playlist = require('../models/playlist.models.js');
 
 //Obtener las playlists
-const obtenerPlaylistsCtrl = async (req, res) => {
+const obtenerPlaylistsCtrl = async (_req, res) => {
     try {
-        const obtenerPlaylists = await playlist.findAll({
-            where: {
-                estado: true
-            }
-        });
+        const obtenerPlaylists = await playlist.findAll();
 
         return res.json(obtenerPlaylists);
     } catch (error) {
@@ -43,30 +39,27 @@ const crearPlaylistCtrl = async (req, res) => {
     try {
         const nuevaPlaylist = await playlist.create({
             usuario_id: req.params.id,
-            titulo
+            titulo : titulo
         })
         await nuevaPlaylist.save();
         return res.json(nuevaPlaylist);
     } catch (error) {
         console.log('Error al crear la playlist', error);
-        return res.status(500).json({
-            message: 'Error interno al crear la playlist'
-        })
+        return res.status(error.status || 500).json({ message: error.message || "Error del servidor al crear el usuario"})
     }
 }
 
 // Actualizar playlist
 const actualizarPlaylistCtrl = async (req, res) => {
-    const { titulo } = req.body;
     try {
-        const actualizarPlaylist = await playlist.update({
-            titulo
-        }, {
+        const { titulo, usuario_id } = req.body;
+        const actualizarPlaylist = await playlist.update({titulo, usuario_id},{
             where: {
                 id: req.params.id,
-                usuario_id: req.params.usuario_id
+
             }
         });
+
         if (!actualizarPlaylist) {
             throw ({
                 status: 400,
@@ -74,8 +67,7 @@ const actualizarPlaylistCtrl = async (req, res) => {
             })
         }
         return res.json({
-            message: 'Playlist actualizada correctamente',
-            updatedPlaylist
+            message: 'Playlist actualizada correctamente'
         })
     } catch (error) {
         return res.status(error.status || 500).json(error.message || 'Error interno del servidor')
@@ -92,14 +84,11 @@ const eliminarPlaylistCtrl= async (req, res) => {
                 message: 'No se ha enviado el id de la reserva'
             })
         }
-        const eliminarPlaylist = await playlist.update;({
-            state:false
-        }), {
+        const eliminarPlaylist = playlist.destroy({
             where: {
-                id,
-                state: true
-            }
-        }
+                id: id
+            },
+            });
         if(!eliminarPlaylist) {
             trow ({
                 status: 400,

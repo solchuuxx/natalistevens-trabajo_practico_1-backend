@@ -23,6 +23,8 @@ app.use(express.urlencoded({extended: true}));
 
 // Routes
 app.use(require('./src/routes/playlist.routes.js'));
+app.use(require('./src/routes/musica.routes.js'))
+app.use(require('./src/routes/usuario.routes.js'))
 
 //Para correr el servidor 
 app.listen(process.env.PORT, ()=>{

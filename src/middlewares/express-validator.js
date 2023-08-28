@@ -1,11 +1,12 @@
-import  { validation } from 'express-validator';
+import { validationResult } from 'express-validator';
 
-export const validate = (req, res, next) => {
-    const error = validation(req);
+// verifica si hay errores
+export const validateSchema = (req, res, next) => {
+const errors = validationResult(req);
 
-    if (!error.isEmpty()) {
-        return res.status(400).json({error: error.array()})
-    }
-
-    next()
+if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
 }
+
+next();
+};
