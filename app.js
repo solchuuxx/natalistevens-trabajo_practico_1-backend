@@ -21,6 +21,9 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+// Routes
+app.use(require('./src/routes/playlist.routes.js'));
+
 //Para correr el servidor 
 app.listen(process.env.PORT, ()=>{
     console.log(`Servidor listo en http://localhost:${process.env.PORT}`)

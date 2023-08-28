@@ -1,6 +1,6 @@
-import { sequelize, DataTypes } from ('../../../../database.js')
-import { usuario } from './usuarios.models.js'
-import { musica } from './musica.models.js'
+const { sequelize, DataTypes } = require('../../database.js')
+const { usuario } = require('./usuario.models.js')
+const { musica } = require('./musica.models.js')
 
 const playlist = sequelize.define('playlist', {
     id: {

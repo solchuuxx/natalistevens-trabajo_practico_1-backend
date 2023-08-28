@@ -1,4 +1,4 @@
-import { sequelize, DataTypes } from "../../../../database.js";
+const { sequelize, DataTypes } = require('../../database.js')
 
 const usuario = sequelize.define( 'usuario', {
 
